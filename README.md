@@ -43,8 +43,10 @@ To solve it, we will consider the number of steams and number of legumes per pla
 
 From this diagram we see a pattern that might help us predict which season would be better to plant a cultivar:
 
-	> We are also considering to reduce the overffiting in the model
+	> We are also considering to reduce the overfitting in the model
 
 ![diagram](images/vars_correlations.png)
 
-From that correlation we can use a logisitc regression model to classify the cultivars and decide on which season they should be planted according to the number of steams and legumes.
+From that correlation and the diagrams we can use a logisitc regression model to classify the cultivars and decide on which season they should be planted according to the number of steams and legumes.
+
+To check out the operations in details, see this [notebook](/jupyther-notebooks/Final_project.ipynb)
