@@ -49,4 +49,6 @@ From this diagram we see a pattern that might help us predict which season would
 
 Making a comparison of the models, we are getting a major accuracy with the Logistic Regression model. We would use that model to classify the cultivars and decide on which season they should be planted according to the number of steams and legumes.
 
+![diagram](images/models_comparison.png)
+
 To check out the operations in details, see this [notebook](/jupyther-notebooks/Final_project.ipynb)
