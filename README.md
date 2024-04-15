@@ -33,22 +33,73 @@ Looking at the Jupyther Notebook we see this correlation table:
 |MHG|0\.30791211346323627|0\.013688085587982273|-0\.046618237181773624|-0\.07112278985848994|-0\.0006872335682949132|0\.032085414402360235|0\.05160352154561627|-0\.12925170894888688|1\.0|0\.0745515631744213|
 |GY|-0\.019709891255374975|-0\.005696532835483628|0\.1232807303872044|0\.13909000030098423|0\.19874121397465258|0\.23888349558719305|0\.07740352649706983|0\.16702199226244205|0\.0745515631744213|1\.0|
 
-## Solving the question
+## The question
 
-We would like to predict what type of cultivar will be better to plant in a specific Season.
+This is a classification problem and we would like to predict what type of cultivar will be better to plant in a specific Season.
 
-To solve it, we will consider the number of steams and number of legumes per plant.
+## Target variable
 
-## Analyzing the correlation of the variables graphically
+There are different types of target variables:
 
-From this diagram we see a pattern that might help us predict which season would be better to plant a cultivar:
+- Categorical variables. These represent distinct classes or categories. They're often used in classification problems.
+- Numerical variables. These can take on continuous values and are usually used in regression problems.
+- Ordinal variables. These target variables have a specific order or rank.
 
-	> We are also considering to reduce the overfitting in the model
+This problem tries to solve a classification problem so we need a categorical variable. The main idea is to predict in which season we'll get better harvests.
 
-![diagram](images/vars_correlations.png)
+According to the values shown in the data frame, the target variable could be the "Season" since it could only take the values 1 and 2.
 
-Making a comparison of the models, we are getting a major accuracy with the Logistic Regression model. We would use that model to classify the cultivars and decide on which season they should be planted according to the number of steams and legumes.
+It's also needed to analyze the correlations between variables so we can have a better understanding.
+
+![diagram](images/target_variable_exploration.png)
+
+## Analyzing the correlation of the variables
+
+Let's see the correlation between the variables in the next graph. Some of the more meaningful correlations are NLP and NGP, NGP and NGL, and NS and NLP.
+
+![diagram](images/correlations.png)
+
+Checking the graphs for each corelation we have this:
+
+- NLP and NGP
+
+![diagram](images/nlp_ngp.png)
+
+- NGP and NGL
+
+![diagram](images/ngp_ngl.png)
+
+- NS and NLP
+
+![diagram](images/ns_nlp.png)
+
+Using NS and NLP would help classify easier to know what season would be better to plant a cultivar.
+
+> NOTE: We are also considering to reduce the overfitting in the model
+
+## Architecture
+
+We need an MLOps strategy so we can automate the model deployments. We would be able to test and simplify every release going through several environments like dev or prod.
+
+At a first glance, this is the proposed architecture:
+
+![diagram](images/architecture.png)
+
+This architecture mainly involves launching each deployment in Kubernetes by making use of Docker for the containers. For CI/CD (Automation), Github actions would do the magic.
+
+## ML Model
+
+Since we're trying to solve a classification problem and due to complexity, the more suitable models to predict the values with high accuracy would be a decision tree, a logistic regression or a random forest model.
+
+Making a comparison of the models, we are getting a major accuracy with the Logistic Regression model. We would use it to classify the cultivars and decide on which season they should be planted according to the number of steams and legumes.
 
 ![diagram](images/models_comparison.png)
 
 To check out the operations in details, see this [notebook](/jupyther-notebooks/Final_project.ipynb)
+
+## New Incoming Data
+
+There could be 2 options for this:
+
+- Web scrapping to get more samples
+- Create a script to generate values in some given ranges
