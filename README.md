@@ -8,6 +8,12 @@ It is intended to design a Machine learning model that could help predict the qu
 
 This is a classification problem and we would like to predict what type of cultivar will be better to plant in a specific Season.
 
+The main reasons needed to use an MLOps strategy are:
+
+- Identify what season would be better to harvest the plants without the need of doing any manual work
+- Automate the ML model deployments
+- Train the models with new data
+
 ## Exploratory Data Analysis
 
 From the dataset we can find the next variables:
@@ -73,6 +79,10 @@ At a first glance, this is the proposed architecture:
 ![diagram](images/architecture.png)
 
 This architecture mainly involves launching each deployment in Kubernetes by making use of Docker for the containers. For CI/CD (Automation), Github actions would do the magic.
+
+If we take a closer look at how the data and models are going to be proecessed, we can see those workflows as follows:
+
+![diagram](images/pieplines.png)
 
 ## ML Model
 
