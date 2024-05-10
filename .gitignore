@@ -161,6 +161,6 @@ cython_debug/
 
 .DS_Store
 # My virtual environment
-mlops-env/
+mlops-my-env/
 
 help.md
