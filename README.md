@@ -82,7 +82,7 @@ This architecture mainly involves launching each deployment in Kubernetes by mak
 
 If we take a closer look at how the data and models are going to be proecessed, we can see those workflows as follows:
 
-![diagram](images/pieplines.png)
+![diagram](images/pipelines.png)
 
 ## ML Model
 
