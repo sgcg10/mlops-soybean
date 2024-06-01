@@ -1,13 +1,23 @@
 name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out the pipeline to deploy models 🚀
-on: [push]
+
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
+    branches:
+      - main
+
 jobs:
   CI:
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "Here we set all the CI phases of our pipeline like unit tests, linters, integration tests, builds, etc"
+
   CD:
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - run: echo "🚀 Here we deploy the versions of the models"
