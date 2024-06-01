@@ -84,7 +84,9 @@ Docker. There are 2 Docker containers:
 - Container 1 is used to build, train and test the models (implemented)
 - Container 2 is used to deploy or serve the versioned model (not implemented).
 
-For CI/CD (Automation), Github actions would do the magic (not implemented).
+For CI/CD (Automation), Github actions would do the magic (not implemented with real configuration for this deployment).
+
+![diagram](images/github_actions.png)
 
 The part of the ETLs is proposed using Airflow to schedule the jobs for data transformations. In the diagram the data would be stored through the different layers (bronze, silver and gold) and taken by the container from the datalake. For this example the data is stored in the container.
 
