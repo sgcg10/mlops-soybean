@@ -78,9 +78,19 @@ At a first glance, this is the proposed architecture:
 
 ![diagram](images/architecture.png)
 
-This architecture mainly involves launching each deployment in Kubernetes by making use of Docker for the containers. For CI/CD (Automation), Github actions would do the magic.
+This architecture has all its services or most of them running in Kubernetes. (not implemented)
 
-If we take a closer look at how the data and models are going to be proecessed, we can see those workflows as follows:
+Docker. There are 2 Docker containers:
+- Container 1 is used to build, train and test the models (implemented)
+- Container 2 is used to deploy or serve the versioned model (not implemented).
+
+For CI/CD (Automation), Github actions would do the magic (not implemented).
+
+The part of the ETLs is proposed using Airflow to schedule the jobs for data transformations. In the diagram the data would be stored through the different layers (bronze, silver and gold) and taken by the container from the datalake. For this example the data is stored in the container.
+
+To save the deployed model we could make use of DVC with S3 as blob storage behind (not implemented).
+
+If we take a closer look at how the data and models are going to be processed, we can see those workflows as follows:
 
 ![diagram](images/pipelines.png)
 
@@ -94,9 +104,9 @@ Making a comparison of the models, we are getting a major accuracy with the Logi
 
 To check out the operations in details, see this [notebook](/jupyther-notebooks/Final_project.ipynb)
 
-## New Incoming Data
+## Data ingestion
 
-There could be 2 options for this:
+We need to serve the data from the datalake, we will have 2 types of data:
 
-- Web scrapping to get more samples
-- Create a script to generate values in some given ranges
+- Training
+- Testing
