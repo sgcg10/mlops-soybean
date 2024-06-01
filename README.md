@@ -78,9 +78,27 @@ At a first glance, this is the proposed architecture:
 
 ![diagram](images/architecture.png)
 
-This architecture mainly involves launching each deployment in Kubernetes by making use of Docker for the containers. For CI/CD (Automation), Github actions would do the magic.
+This architecture has all its services or most of them running in Kubernetes, this was choosen due to its capability to autoscale really quick. (not implemented)
 
-If we take a closer look at how the data and models are going to be proecessed, we can see those workflows as follows:
+As you can see on the left side, there's the Analytics section where the users can explore, analyze and validate the data and their operations.
+
+Docker. There are 2 Docker containers:
+- Container 1 is used to build, train and test the models (implemented)
+- Container 2 is used to deploy or serve the versioned model (not implemented).
+
+For CI/CD (Automation), Github actions would do the magic (not implemented with real configuration for this deployment).
+
+![diagram](images/github_actions.png)
+
+The part of the ETLs is proposed making use of Airflow to schedule the jobs for the data transformations. In the diagram the data would be stored through the different layers (bronze, silver and gold) and taken by the container from the datalake.
+
+The model should take the data for training or testing depending on the operation. For this example the data is stored directly in the container.
+
+To save the deployed model we could make use of DVC with S3 as blob storage behind, DVC will also allow us to version it (not implemented).
+
+To monitor the models we need to choose the metrics we want to see; it can be used Prometheus for the metrics and Grafana to create dashboards for observability.
+
+If we take a closer look at how the data and models are going to be processed, we can see those workflows as follows:
 
 ![diagram](images/pipelines.png)
 
@@ -93,10 +111,3 @@ Making a comparison of the models, we are getting a major accuracy with the Logi
 ![diagram](images/models_comparison.png)
 
 To check out the operations in details, see this [notebook](/jupyther-notebooks/Final_project.ipynb)
-
-## New Incoming Data
-
-There could be 2 options for this:
-
-- Web scrapping to get more samples
-- Create a script to generate values in some given ranges
